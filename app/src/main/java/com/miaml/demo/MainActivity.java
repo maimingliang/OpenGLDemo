@@ -7,7 +7,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.github.hiteshsondhi88.libffmpeg.ExecuteBinaryResponseHandler;
 import com.github.hiteshsondhi88.libffmpeg.FFmpeg;
@@ -32,8 +35,9 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.speed).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, OpenGLDemoActivity.class);
-                startActivity(intent);
+                starAnimation();
+//                Intent intent = new Intent(MainActivity.this, OpenGLDemoActivity.class);
+//                startActivity(intent);
              }
         });
         findViewById(R.id.airHockey).setOnClickListener(new View.OnClickListener() {
@@ -50,6 +54,18 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
              }
         });
+    }
+
+
+    public void starAnimation() {
+        TextView text = (TextView) findViewById(R.id.text);
+
+        // 初始化需要加载的动画资源
+        Animation animation = AnimationUtils
+                .loadAnimation(this, R.anim.fade_out_fast);
+
+        // 将TextView执行Animation动画
+        text.startAnimation(animation);
     }
 
 
